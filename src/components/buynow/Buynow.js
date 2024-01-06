@@ -5,12 +5,13 @@ import "./buynow.css";
 import Option from "./Option";
 import Subtotal from "./Subtotal";
 import Right from "./Right";
+const ENDPOINT = process.env.REACT_APP_BACKEND_ENDPOINT;
 const Buynow = () => {
   const [cartdata, setCartdata] = useState("");
 
   console.log(cartdata);
   const getdatabuy = async () => {
-    const res = await fetch("/cartdetails", {
+    const res = await fetch(`${ENDPOINT}/cartdetails`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -48,9 +49,7 @@ const Buynow = () => {
                     <div className="item_containert">
                       <img src={e.detailUrl} alt="" />
                       <div className="item_details">
-                        <h3>
-                        {e.title.longTitle}
-                        </h3>
+                        <h3>{e.title.longTitle}</h3>
                         <h3>{e.title.shortTitle}</h3>
                         <h3 className="diffrentprice">$180.00</h3>
                         <p className="unusuall">Usually dispatched in 8 days</p>
@@ -59,7 +58,7 @@ const Buynow = () => {
                           src="https://m.media-amazon.com/images/G/31/marketing/fba/fba-badge_18px-2x._CB485942108_.png"
                           alt="logo"
                         />
-                        <Option deletedata={e.id} get={getdatabuy}/>
+                        <Option deletedata={e.id} get={getdatabuy} />
                       </div>
                       <div className="item_price">₹{e.price.cost}.00</div>
                     </div>
@@ -68,10 +67,9 @@ const Buynow = () => {
                 );
               })}
 
-              
               <Subtotal item={cartdata} />
             </div>
-            <Right  item={cartdata} />
+            <Right item={cartdata} />
           </div>
         </div>
       ) : (
@@ -116,12 +114,9 @@ export default Buynow;
 //         }
 //     };
 
-
-
 //     useEffect(() => {
 //         getdatabuy();
 //     }, []);
-
 
 //     // const [price, setPrice] = useState(0);
 //     // const totalAmount = () => {
@@ -135,8 +130,6 @@ export default Buynow;
 //     // useEffect(() => {
 //     //     totalAmount();
 //     // }, [cartdata]);
-
-    
 
 //     return (
 //         <>
@@ -171,7 +164,7 @@ export default Buynow;
 //                                     )
 //                                 })
 //                             }
-                         
+
 //                             <Subtotal iteam={cartdata} />
 //                         </div>
 //                         <Right iteam={cartdata} />
@@ -184,7 +177,6 @@ export default Buynow;
 
 // export default Buynow;
 
-
-// thodu changes krya 6 carts ni andr cart htu bt tene remove karine 
+// thodu changes krya 6 carts ni andr cart htu bt tene remove karine
 // je pramane aapdo normal data save 6 te rite bnavyu
 // jo carts ni andr cart use kro to tmare map call kravya pachi pn e.cart.discount

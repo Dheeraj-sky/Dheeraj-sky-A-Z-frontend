@@ -17,7 +17,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Rightheader from "./Rightheader";
 import { getProducts } from "../redux/actions/action";
 import { useSelector, useDispatch } from "react-redux";
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+const ENDPOINT = process.env.REACT_APP_BACKEND_ENDPOINT;
 // const usestyle = makeStyles({
 //     component: {
 //         marginTop: 10,
@@ -58,7 +59,7 @@ const Navbaar = () => {
   const { account, setAccount } = useContext(LoginContext);
 
   const getdetailsvaliduser = async () => {
-    const res = await fetch("/validuser", {
+    const res = await fetch(`${ENDPOINT}/validuser`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -84,7 +85,7 @@ const Navbaar = () => {
 
   // for logout
   const logoutuser = async () => {
-    const res2 = await fetch("/logout", {
+    const res2 = await fetch(`${ENDPOINT}/logout`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -181,16 +182,16 @@ const Navbaar = () => {
             <NavLink to="/buynow">
               <div className="cart_btn">
                 <Badge badgeContent={account.carts.length} color="secondary">
-                <ShoppingCartIcon id="icon"/>
+                  <ShoppingCartIcon id="icon" />
                 </Badge>
-<p>Cart</p>
+                <p>Cart</p>
               </div>
             </NavLink>
           ) : (
             <NavLink to="/login">
               <div className="cart_btn">
                 <Badge badgeContent={0} color="secondary">
-                <ShoppingCartIcon id="icon"/>
+                  <ShoppingCartIcon id="icon" />
                 </Badge>
                 <p>Cart</p>
               </div>
